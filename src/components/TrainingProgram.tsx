@@ -5,6 +5,7 @@ import {
   HiOutlineDesktopComputer,
   HiOutlineClipboardList,
 } from "react-icons/hi";
+import { Link } from "react-router-dom";
 
 const TrainingProgram: React.FC = () => {
   const programs = [
@@ -20,7 +21,7 @@ const TrainingProgram: React.FC = () => {
       description:
         "Business planning, financial management, and entrepreneurship development programs.",
       icon: <HiOutlineBriefcase className="w-6 h-6 text-green-600" />,
-      highlighted: true, // blue border card
+      highlighted: false, // blue border card
     },
     {
       title: "Life Skills Programs",
@@ -54,7 +55,7 @@ const TrainingProgram: React.FC = () => {
         {programs.map((item) => (
           <div
             key={item.title}
-            className={`rounded-xl p-6 shadow-sm bg-white flex flex-col border transition
+            className={`rounded-xl p-6 shadow-sm bg-white hover:scale-105 cursor-pointer flex flex-col border transition
               ${
                 item.highlighted
                   ? "border-teal-300 shadow-md"
@@ -64,23 +65,23 @@ const TrainingProgram: React.FC = () => {
           >
             {/* Icon + Title */}
             <div className="flex items-center gap-4 mb-4">
-              <div className="bg-green-100 p-3 rounded-lg flex items-center justify-center">
+              <div className="bg-gray-100 p-3 rounded-lg flex items-center justify-center">
                 {item.icon}
               </div>
-              <h3 className="text-lg font-semibold text-gray-900">
+              <h3 className="text-xl font-bold text-gray-900">
                 {item.title}
               </h3>
             </div>
 
             {/* Description */}
-            <p className="text-gray-600 text-sm flex-grow">
+            <p className="text-gray-600 text-base flex-grow">
               {item.description}
             </p>
 
             {/* Request Link */}
-            <button className="mt-4 text-green-600 font-medium flex items-center gap-1 hover:underline">
-              Request Service <span>→</span>
-            </button>
+            <Link to="/programs" className="mt-4 text-green-600 font-medium flex items-center gap-1 hover:underline">
+              Request Service 
+            </Link>
           </div>
         ))}
       </div>

@@ -1,5 +1,6 @@
 import React from "react";
-import { ArrowRight } from "lucide-react";
+import { Code2, Users, TrendingUp, Award, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function HomeProgramSection() {
   const items = [
@@ -7,25 +8,25 @@ export default function HomeProgramSection() {
       title: "YES Program",
       desc: "Youth Entrepreneurship & Startup Program",
       link: "Learn More",
-      icon: "📈",
+      icon: <TrendingUp size={24} />,
     },
     {
       title: "Digital Accelerators",
       desc: "Rwanda Network for business growth and innovation",
       link: "Explore",
-      icon: "🎖️",
+      icon: <Award size={24} />,
     },
     {
       title: "Agereyo Initiative",
       desc: "Digital literacy and community upliftment programs",
       link: "Join Us",
-      icon: "👥",
+      icon: <Users size={24} />,
     },
     {
       title: "SmartTrade",
       desc: "myAgereyo App for digital commerce and trading",
       link: "Get Started",
-      icon: "💻",
+      icon: <Code2 size={24} />,
     },
   ];
 
@@ -42,22 +43,26 @@ export default function HomeProgramSection() {
         {/* Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mt-12">
           {items.map((item, index) => (
-            <div
-              key={index}
-              className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition duration-200 cursor-pointer"
-            >
-              {/* Icon */}
-              <div className="w-12 h-12 bg-green-100 text-green-700 flex items-center justify-center rounded-lg text-2xl mb-4">
-                {item.icon}
-              </div>
+            <Link to="/programs">
+              <div
+                key={index}
+                className="bg-white p-6 text-left rounded-xl shadow-sm border border-gray-200 hover:shadow-md transition duration-200 cursor-pointer"
+              >
+                {/* Icon */}
+                <div className="w-12 h-12 bg-gray-100 text-green-700 flex items-center justify-center rounded-lg text-2xl mb-4">
+                  {item.icon}
+                </div>
 
-              <h3 className="font-bold text-lg text-teal-900">{item.title}</h3>
-              <p className="text-gray-600 text-sm mt-2">{item.desc}</p>
+                <h3 className="font-bold text-lg text-[#00485C]">
+                  {item.title}
+                </h3>
+                <p className="text-gray-600 text-sm mt-2">{item.desc}</p>
 
-              <div className="flex items-center gap-2 text-green-700 font-semibold text-sm mt-5">
-                {item.link} <ArrowRight size={16} />
+                <div className="flex items-center gap-2 text-green-700 font-semibold text-sm mt-5">
+                  {item.link} <ArrowRight size={16} />
+                </div>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

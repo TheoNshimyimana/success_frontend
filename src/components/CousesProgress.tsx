@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const CoursesProgress: React.FC = () => {
   const courses = [
@@ -34,7 +35,7 @@ const CoursesProgress: React.FC = () => {
             >
               {/* Title + Level */}
               <div className="flex justify-between items-start mb-3">
-                <h3 className="text-lg font-semibold text-gray-800">
+                <h3 className="text-xl font-bold text-gray-800">
                   {course.title}
                 </h3>
 
@@ -53,9 +54,9 @@ const CoursesProgress: React.FC = () => {
               <p className="text-gray-600 mb-6">Duration: {course.duration}</p>
 
               {/* Button */}
-              <button className="w-full bg-teal-700 hover:bg-teal-800 text-white py-2 rounded-md transition">
+              <Link to="/training" className="w-full bg-teal-700 hover:bg-teal-800 text-white py-1 px-6 rounded-md transition">
                 Enroll Now
-              </button>
+              </Link>
             </div>
           ))}
         </div>

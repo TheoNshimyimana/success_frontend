@@ -6,6 +6,7 @@ import { FiUsers } from "react-icons/fi";
 import { HiOutlineRocketLaunch } from "react-icons/hi2";
 import { RiFlashlightLine } from "react-icons/ri";
 import OurImpacts from "../components/OurImpacts";
+import { Link } from "react-router-dom";
 
 export default function ProgramsSection() {
   return (
@@ -239,9 +240,9 @@ export default function ProgramsSection() {
             entrepreneurial success.
           </p>
 
-          <button className="inline-flex items-center gap-2 bg-white text-teal-900 font-semibold px-8 py-3 rounded-lg shadow hover:bg-gray-100 transition">
+          <Link to="/contact" className="inline-flex items-center gap-2 bg-white text-teal-900 font-semibold px-8 py-3 rounded-lg shadow hover:bg-gray-100 transition">
             Get Started Today <ArrowRight size={18} />
-          </button>
+          </Link>
         </div>
       </section>
 

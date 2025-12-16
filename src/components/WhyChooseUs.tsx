@@ -53,22 +53,22 @@ const WhyChooseUs: React.FC = () => {
           {features.map((item) => (
             <div
               key={item.number}
-              className="bg-white p-8 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition"
+              className="bg-slate-50 p-8 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition"
             >
               {/* Number badge */}
               <div className="flex justify-center">
-                <div className="w-12 h-12 flex items-center justify-center rounded-full bg-teal-100 text-teal-700 font-semibold text-lg mb-4">
+                <div className="w-12 h-12 flex items-center justify-center rounded-full bg-gray-200 text-teal-700 font-bold text-2xl mb-4">
                   {item.number}
                 </div>
               </div>
 
               {/* Title */}
-              <h3 className="text-lg font-semibold text-gray-900 mb-3">
+              <h3 className="text-xl font-bold text-gray-900 mb-3">
                 {item.title}
               </h3>
 
               {/* Description */}
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <p className="text-gray-600 text-base leading-relaxed">
                 {item.description}
               </p>
             </div>

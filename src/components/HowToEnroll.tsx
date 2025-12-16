@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 interface Step {
   number: number;
@@ -53,17 +54,20 @@ const HowToEnroll: React.FC = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="bg-[#0d7377] mb-10 text-white text-center py-28 px-4">
+      <section className="bg-[#0d7377] text-white text-center py-28 px-4">
         <h2 className="text-4xl font-bold">
           Start Your Learning Journey Today
         </h2>
-        <p className="mt-3 text-white/90">
+        <p className="mt-3 mb-10 text-white/90">
           Invest in yourself and unlock new opportunities through quality
           training.
         </p>
-        <button className="mt-6 bg-white text-sm text-teal-700 px-6 py-3 rounded-md font-semibold hover:bg-gray-200 transition">
+        <Link
+          to="/programs"
+          className=" bg-white text-sm text-teal-700 px-6 py-3 rounded-md font-semibold hover:bg-gray-200 transition"
+        >
           Browse All Courses →
-        </button>
+        </Link>
       </section>
     </>
   );

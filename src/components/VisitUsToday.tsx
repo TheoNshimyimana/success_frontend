@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function VisitUsToday() {
   return (
-    <section className="w-full bg-[#0D7377] text-white mb-10 py-20 px-4 flex flex-col items-center">
+    <section className="w-full bg-[#0D7377] text-white  py-20 px-4 flex flex-col items-center">
       {/* Heading */}
       <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
         Visit Us Today
@@ -34,9 +35,9 @@ export default function VisitUsToday() {
       </div>
 
       {/* Button */}
-      <button className="bg-white text-teal-800 font-medium py-2 px-4 text-sm rounded-lg cursor-pointer shadow-md hover:bg-gray-100 transition-all">
+      <Link to="/contact" className="bg-white text-teal-800 font-medium py-2 px-4 text-sm rounded-lg cursor-pointer shadow-md hover:bg-gray-100 transition-all">
         Get Directions
-      </button>
+      </Link>
     </section>
   );
 }
