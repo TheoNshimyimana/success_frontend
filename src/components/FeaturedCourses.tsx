@@ -39,7 +39,7 @@ export default function FeaturedCourses() {
   /* ================= FETCH COURSES ================= */
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/courses")
+      .get("https://success-backnd.onrender.com/api/courses")
       .then((res) => setCourses(res.data))
       .catch(() => toast.error("Failed to load courses"));
   }, []);
@@ -49,7 +49,7 @@ export default function FeaturedCourses() {
     if (!token) return;
 
     axios
-      .get("http://localhost:5000/api/course-enrollments/my", {
+      .get("https://success-backnd.onrender.com/api/course-enrollments/my", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setEnrollments(res.data))
@@ -98,7 +98,7 @@ export default function FeaturedCourses() {
       setLoadingId(courseId);
 
       await axios.post(
-        "http://localhost:5000/api/course-enrollments",
+        "https://success-backnd.onrender.com/api/course-enrollments",
         { courseId },
         {
           headers: { Authorization: `Bearer ${token}` },
@@ -110,7 +110,7 @@ export default function FeaturedCourses() {
       );
 
       const res = await axios.get(
-        "http://localhost:5000/api/course-enrollments/my",
+        "https://success-backnd.onrender.com/api/course-enrollments/my",
         {
           headers: { Authorization: `Bearer ${token}` },
         }

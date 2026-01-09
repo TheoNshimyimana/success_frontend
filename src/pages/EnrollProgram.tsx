@@ -37,7 +37,7 @@ export default function EnrollProgram() {
   useEffect(() => {
     const fetchProgram = async () => {
       try {
-        const res = await axios.get(`http://localhost:5000/api/programs/${id}`);
+        const res = await axios.get(`https://success-backnd.onrender.com/api/programs/${id}`);
         setProgram(res.data);
       } catch (err) {
         console.error("Failed to load program", err);
@@ -55,7 +55,7 @@ export default function EnrollProgram() {
       setEnrolling(true);
 
       await axios.post(
-        `http://localhost:5000/api/enrollments`,
+        `https://success-backnd.onrender.com/api/enrollments`,
         { programId: id },
         {
           headers: {

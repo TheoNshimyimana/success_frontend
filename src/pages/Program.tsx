@@ -38,7 +38,7 @@ export default function ProgramsSection() {
   /* ================= FETCH PROGRAMS ================= */
   useEffect(() => {
     axios
-      .get("http://localhost:5000/api/programs")
+      .get("https://success-backnd.onrender.com/api/programs")
       .then((res) => setPrograms(res.data))
       .catch(console.error);
   }, []);
@@ -48,7 +48,7 @@ export default function ProgramsSection() {
     if (!token) return;
 
     axios
-      .get("http://localhost:5000/api/enrollments/my", {
+      .get("https://success-backnd.onrender.com/api/enrollments/my", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setEnrollments(res.data))
@@ -67,13 +67,13 @@ export default function ProgramsSection() {
       setLoadingEnroll(programId);
 
       await axios.post(
-        "http://localhost:5000/api/enrollments",
+        "https://success-backnd.onrender.com/api/enrollments",
         { programId },
         { headers: { Authorization: `Bearer ${token}` } }
       );
 
       // Refresh enrollments
-      const res = await axios.get("http://localhost:5000/api/enrollments/my", {
+      const res = await axios.get("https://success-backnd.onrender.com/api/enrollments/my", {
         headers: { Authorization: `Bearer ${token}` },
       });
 

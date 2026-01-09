@@ -14,7 +14,7 @@ interface User {
   profilePicture?: string;
 }
 
-const SERVER_URL = "http://localhost:5000";
+const SERVER_URL = "https://success-backnd.onrender.com";
 
 export default function Navbar() {
   const { user, setUser } = useContext(UserContext);

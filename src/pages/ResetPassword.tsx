@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = "https://success-backnd.onrender.com/api/auth";
 
 export default function ResetPassword() {
   const { token } = useParams();

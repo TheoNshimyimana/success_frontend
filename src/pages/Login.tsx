@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
-const API_URL = "http://localhost:5000/api/auth";
+const API_URL = "https://success-backnd.onrender.com/api/auth";
 
 export default function Login() {
   const { setUser } = useContext(UserContext);
