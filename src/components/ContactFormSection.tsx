@@ -1,6 +1,65 @@
+"use client";
+
 import { Send } from "lucide-react";
+import { useState } from "react";
 
 export default function ContactFormSection() {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
+  });
+  const [submitting, setSubmitting] = useState(false);
+  const [success, setSuccess] = useState<string | null>(null);
+
+  const WEB3FORM_API_KEY = "e36a5b0e-6d6c-4dfe-8998-489c6c8d3647"; // replace with your Web3Form API key
+
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
+  ) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitting(true);
+    setSuccess(null);
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: WEB3FORM_API_KEY,
+          ...formData,
+        }),
+      });
+
+      const data = await res.json();
+      if (data.success) {
+        setSuccess("Message sent successfully!");
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          subject: "",
+          message: "",
+        });
+      } else {
+        setSuccess("Failed to send message. Please try again.");
+      }
+    } catch (err) {
+      console.error(err);
+      setSuccess("An error occurred. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <section className="bg-[#f7eeee] py-20">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -14,13 +73,17 @@ export default function ContactFormSection() {
             possible.
           </p>
 
-          <form className="space-y-5">
+          <form className="space-y-5" onSubmit={handleSubmit}>
             {/* Name */}
             <div>
               <label className="block text-sm font-medium mb-1">Name</label>
               <input
                 type="text"
+                name="name"
                 placeholder="Your name"
+                value={formData.name}
+                onChange={handleChange}
+                required
                 className="w-full border border-gray-200 bg-white rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green-600"
               />
             </div>
@@ -31,7 +94,11 @@ export default function ContactFormSection() {
                 <label className="block text-sm font-medium mb-1">Email</label>
                 <input
                   type="email"
+                  name="email"
                   placeholder="your@email.com"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
                   className="w-full border border-gray-200 bg-white rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green-600"
                 />
               </div>
@@ -39,8 +106,11 @@ export default function ContactFormSection() {
                 <label className="block text-sm font-medium mb-1">Phone</label>
                 <input
                   type="text"
+                  name="phone"
                   placeholder="+250 XXX XXX XXX"
-                  className="w-full border border-gray-200 bg-white py-2 rounded-lg px-4  focus:outline-none focus:ring-1 focus:ring-green-600"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className="w-full border border-gray-200 bg-white py-2 rounded-lg px-4 focus:outline-none focus:ring-1 focus:ring-green-600"
                 />
               </div>
             </div>
@@ -48,11 +118,17 @@ export default function ContactFormSection() {
             {/* Subject */}
             <div>
               <label className="block text-sm font-medium mb-1">Subject</label>
-              <select className="w-full border border-gray-200 bg-white rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green-600">
-                <option>Select a subject</option>
-                <option>ICT Services</option>
-                <option>Digital Training</option>
-                <option>Support</option>
+              <select
+                name="subject"
+                value={formData.subject}
+                onChange={handleChange}
+                required
+                className="w-full border border-gray-200 bg-white rounded-lg px-4 py-2 focus:outline-none focus:ring-1 focus:ring-green-600"
+              >
+                <option value="">Select a subject</option>
+                <option value="ICT Services">ICT Services</option>
+                <option value="Digital Training">Digital Training</option>
+                <option value="Support">Support</option>
               </select>
             </div>
 
@@ -60,8 +136,12 @@ export default function ContactFormSection() {
             <div>
               <label className="block text-sm font-medium mb-1">Message</label>
               <textarea
+                name="message"
                 rows={5}
                 placeholder="Tell us about your inquiry..."
+                value={formData.message}
+                onChange={handleChange}
+                required
                 className="w-full border border-gray-200 bg-white rounded-lg px-4 py-3 focus:outline-none focus:ring-1 focus:ring-green-600"
               />
             </div>
@@ -69,10 +149,17 @@ export default function ContactFormSection() {
             {/* Button */}
             <button
               type="submit"
-              className="w-full bg-[#3F9137] text-white py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-green-800"
+              disabled={submitting}
+              className="w-full bg-[#3F9137] text-white py-3 rounded-lg flex items-center justify-center gap-2 hover:bg-green-800 transition"
             >
-              Send Message <Send size={16} />
+              {submitting ? "Sending..." : "Send Message"} <Send size={16} />
             </button>
+
+            {success && (
+              <p className="text-center text-sm text-green-600 mt-2">
+                {success}
+              </p>
+            )}
           </form>
         </div>
 
@@ -86,7 +173,6 @@ export default function ContactFormSection() {
               Visit us at our office in Kigali, Rwanda.
             </p>
 
-            {/* MAP */}
             <div className="rounded-xl overflow-hidden shadow-md border border-gray-400">
               <iframe
                 title="Kigali Map"
@@ -97,12 +183,10 @@ export default function ContactFormSection() {
             </div>
           </div>
 
-          {/* BUSINESS HOURS */}
-          <div className="border border-gray-200  rounded-xl p-6 bg-white">
+          <div className="border border-gray-200 rounded-xl p-6 bg-white">
             <h3 className="font-bold text-lg text-[#064a57] mb-4">
               Business Hours
             </h3>
-
             <div className="space-y-2 text-sm text-gray-600">
               <div className="flex justify-between">
                 <span>Monday - Friday:</span>

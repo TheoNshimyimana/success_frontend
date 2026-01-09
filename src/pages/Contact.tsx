@@ -26,9 +26,7 @@ export default function ContactSection() {
                 <Phone className="text-green-700 size-8 " />
               </div>
               <h3 className="font-bold text-[#00485C] text-lg">Phone</h3>
-              <p className="text-green-700 font-semibold mt-2">
-                +250 788 123 456
-              </p>
+              <p className="text-green-700 font-semibold mt-2">+250782755830</p>
             </div>
 
             {/* EMAIL */}
@@ -37,7 +35,9 @@ export default function ContactSection() {
                 <Mail className="text-green-700 size-8 " />
               </div>
               <h3 className="font-bold text-[#00485C] text-lg">Email</h3>
-              <p className="text-green-700 mt-2 font-semibold">info@stlab.rw</p>
+              <p className="text-green-700 mt-2 font-semibold">
+                contact@stlab.rw
+              </p>
             </div>
 
             {/* ADDRESS */}

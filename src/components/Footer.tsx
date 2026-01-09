@@ -6,7 +6,9 @@ import {
   MapPin,
   Phone,
   Mail,
+
 } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Footer() {
   return (
@@ -45,10 +47,30 @@ export default function Footer() {
         <div className="ml-6">
           <h3 className="font-semibold mb-4 text-lg">Quick Links</h3>
           <ul className="space-y-2 text-sm text-white/90">
-            <li>Home</li>
-            <li>About</li>
-            <li>Services</li>
-            <li>TobiServe Hub</li>
+            <li>
+              {" "}
+              <Link to="/">Home</Link>{" "}
+            </li>
+            <li>
+              {" "}
+              <Link to="/about">About</Link>{" "}
+            </li>
+            <li>
+              {" "}
+              <Link to="/services">Services</Link>{" "}
+            </li>
+            <li>
+              {" "}
+              <Link to="/training">Training</Link>{" "}
+            </li>
+            <li>
+              {" "}
+              <Link to="/programs">Programs</Link>{" "}
+            </li>
+            <li>
+              {" "}
+              <Link to="/contact">contact</Link>{" "}
+            </li>
           </ul>
         </div>
 
@@ -71,10 +93,10 @@ export default function Footer() {
               <MapPin size={18} /> Kigali, Rwanda
             </li>
             <li className="flex items-center gap-2">
-              <Phone size={18} /> +250 788 000 000
+              <Phone size={18} /> +250782755830
             </li>
             <li className="flex items-center gap-2">
-              <Mail size={18} /> info@stlab.rw
+              <Mail size={18} /> contact@stlab.rw
             </li>
           </ul>
         </div>
