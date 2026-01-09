@@ -4,7 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../UserContext";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
-const API_URL = "https://success-backnd.onrender.com/api/auth";
+// Use environment variable for API URL
+const API_URL =
+  process.env.REACT_APP_API_URL ||
+  "https://success-backnd.onrender.com/api/auth";
 
 export default function Login() {
   const { setUser } = useContext(UserContext);
@@ -19,24 +22,35 @@ export default function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
 
     try {
-      setLoading(true);
-
-      const response = await axios.post(`${API_URL}/login`, {
-        email,
-        password,
-      });
+      // Make request with Axios
+      const response = await axios.post(
+        `${API_URL}/login`,
+        { email, password },
+        {
+          headers: { "Content-Type": "application/json" },
+          withCredentials: false, // use true only if backend sets cookies
+        }
+      );
 
       const { token, user } = response.data;
 
+      // Save token & user in localStorage
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
 
+      // Update context
       setUser(user);
+
+      // Navigate to home
       navigate("/");
     } catch (err: any) {
-      setError(err.response?.data?.message || "Login failed");
+      console.error(err);
+      setError(
+        err.response?.data?.message || "Login failed. Please try again."
+      );
     } finally {
       setLoading(false);
     }
@@ -64,7 +78,7 @@ export default function Login() {
             className="w-full p-3 border rounded focus:ring-2 focus:ring-blue-500"
           />
 
-          {/* Password with eye icon */}
+          {/* Password with toggle */}
           <div className="relative">
             <input
               type={showPassword ? "text" : "password"}
@@ -74,7 +88,6 @@ export default function Login() {
               required
               className="w-full p-3 pr-12 border rounded focus:ring-2 focus:ring-blue-500"
             />
-
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
@@ -102,7 +115,7 @@ export default function Login() {
           <button
             type="submit"
             disabled={loading}
-            className={`w-full py-3 cursor-pointer rounded text-white transition ${
+            className={`w-full py-3 rounded text-white transition ${
               loading
                 ? "bg-gray-400 cursor-not-allowed"
                 : "bg-blue-600 hover:bg-blue-700"
