@@ -2,7 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 
-const API_URL = "http://localhost:5000/api/auth"; // your backend URL
+const API_URL = "https://success-backnd.onrender.com/api/auth"; // your backend URL
 
 export default function ChangePassword() {
   const [currentPassword, setCurrentPassword] = useState("");

@@ -20,7 +20,7 @@ export default function AllUsers() {
   const [editRole, setEditRole] = useState<"admin" | "user">("user");
   const [searchTerm, setSearchTerm] = useState("");
 
-  const API_URL = "http://localhost:5000/api/auth";
+  const API_URL = "https://success-backnd.onrender.com/api/auth";
 
   useEffect(() => {
     fetchUsers();

@@ -46,9 +46,12 @@ export default function AdminProgramEnrollments() {
 
   const fetchEnrollments = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/enrollments", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await axios.get(
+        "https://success-backnd.onrender.com/api/enrollments",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setEnrollments(res.data);
       setFilteredEnrollments(res.data);
     } catch (error) {
@@ -61,9 +64,12 @@ export default function AdminProgramEnrollments() {
       return;
 
     try {
-      await axios.delete(`http://localhost:5000/api/enrollments/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await axios.delete(
+        `https://success-backnd.onrender.com/api/enrollments/${id}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setEnrollments((prev) => prev.filter((e) => e._id !== id));
     } catch (error) {
       console.error(error);
@@ -76,7 +82,7 @@ export default function AdminProgramEnrollments() {
   ) => {
     try {
       await axios.put(
-        `http://localhost:5000/api/enrollments/${id}`,
+        `https://success-backnd.onrender.com/api/enrollments/${id}`,
         { status },
         { headers: { Authorization: `Bearer ${token}` } }
       );

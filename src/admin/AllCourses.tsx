@@ -14,7 +14,7 @@ interface CourseItem {
 }
 
 export default function AllCourses() {
-  const API_URL = "http://localhost:5000/api/courses";
+  const API_URL = "https://success-backnd.onrender.com/api/courses";
   const token = localStorage.getItem("token");
 
   const [courses, setCourses] = useState<CourseItem[]>([]);

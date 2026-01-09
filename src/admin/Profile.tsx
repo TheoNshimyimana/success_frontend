@@ -10,8 +10,8 @@ interface User {
   profilePicture?: string;
 }
 
-const API_URL = "http://localhost:5000/api/auth";
-const SERVER_URL = "http://localhost:5000";
+const API_URL = "https://success-backnd.onrender.com/api/auth";
+const SERVER_URL = "https://success-backnd.onrender.com";
 
 export default function Profile() {
   const [user, setUser] = useState<User | null>(null);

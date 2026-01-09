@@ -13,7 +13,7 @@ interface ProgramItem {
 }
 
 export default function AllPrograms() {
-  const API_URL = "http://localhost:5000/api/programs";
+  const API_URL = "https://success-backnd.onrender.com/api/programs";
   const token = localStorage.getItem("token");
 
   const [programs, setPrograms] = useState<ProgramItem[]>([]);

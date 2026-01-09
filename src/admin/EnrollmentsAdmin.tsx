@@ -71,9 +71,12 @@ export default function CourseEnrollmentsAdmin() {
 
   const deleteEnrollment = async (id: string) => {
     try {
-      await axios.delete(`http://localhost:5000/api/course-enrollments/${id}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await axios.delete(
+        `https://success-backnd.onrender.com/api/course-enrollments/${id}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setEnrollments((prev) => prev.filter((e) => e._id !== id));
     } catch (error) {
       console.error("Failed to delete enrollment", error);
